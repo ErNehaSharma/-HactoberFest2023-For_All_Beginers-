@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Election System</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Online Election System</h1>
+    </header>
+    <div id="candidates">
+        <h2>Candidates</h2>
+        <ul id="candidate-list">
+            <li><input type="radio" name="candidate" value="candidate1"> Candidate 1</li>
+            <li><input type="radio" name="candidate" value="candidate2"> Candidate 2</li>
+            <li><input type="radio" name="candidate" value="candidate3"> Candidate 3</li>
+        </ul>
+    </div>
+    <div id="voting">
+        <h2>Vote</h2>
+        <button id="vote-button">Vote</button>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
+-----------------------------------css part----------------------------------
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+#candidates, #voting {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+-------------------------------------------------JavaScript part -----------------------------------------------------
+
+document.addEventListener("DOMContentLoaded", function () {
+    const voteButton = document.getElementById("vote-button");
+    const candidateList = document.querySelectorAll('input[type="radio"][name="candidate"]');
+
+    voteButton.addEventListener("click", function () {
+        const selectedCandidate = document.querySelector('input[type="radio"][name="candidate"]:checked');
+
+        if (selectedCandidate) {
+            const candidateName = selectedCandidate.value;
+            const confirmation = confirm(`Are you sure you want to vote for ${candidateName}?`);
+
+            if (confirmation) {
+                alert(`You voted for ${candidateName}`);
+                // You can add code here to send the vote to a server/database.
+            }
+        } else {
+            alert("Please select a candidate before voting.");
+        }
+    });
+});
